@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+    id 'edu.wpi.first.wpilib.repositories.WPILibRepositoriesPlugin' version '2025.0'
+}
+
+group = 'org.yetirobotics'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+wpilibRepositories.addAllReleaseRepositories(project)
+
+dependencies {
+    implementation 'edu.wpi.first.ntcore:ntcore-java:2025.+'
+    implementation 'edu.wpi.first.wpilibj:wpilibj-java:2025.+'
+    implementation 'edu.wpi.first.wpiutil:wpiutil-java:2025.+'
+    implementation 'edu.wpi.first.hal:hal-java:2025.+'
+}
