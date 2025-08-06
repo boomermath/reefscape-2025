@@ -1,5 +1,5 @@
 package entry;
 
-public class NumberArrayYLogEntry {
+public class NumberArrayYLogEntry extends AbstractYLogEntry {
     public long[] value;
 }

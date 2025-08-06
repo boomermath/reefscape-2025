@@ -1,5 +1,5 @@
 package entry;
 
-public class BooleanArrayYLogEntry {
+public class BooleanArrayYLogEntry extends AbstractYLogEntry {
     public boolean[] value;
 }

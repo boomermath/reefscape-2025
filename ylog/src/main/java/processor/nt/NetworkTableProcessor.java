@@ -1,26 +1,36 @@
-package processor;
+package processor.nt;
 
 import edu.wpi.first.networktables.GenericPublisher;
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.networktables.StructPublisher;
-import edu.wpi.first.util.struct.Struct;
+import edu.wpi.first.networktables.PubSubOption;
 import edu.wpi.first.util.struct.StructSerializable;
 import entry.*;
+import processor.YLogProcessor;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class NetworkTableProcessor implements YLogProcessor {
-    private final Map<String, GenericPublisher> publishers = new HashMap<>();
+   private final NetworkTable table = NetworkTableInstance.getDefault().getTable("YLog");
 
+    private final Map<String, GenericPublisher> publishers = new HashMap<>();
+    private final Map<String, Object> lastValues = new HashMap<>();
+
+
+    public GenericPublisher getPublisher(String key, String typeString) {
+        NetworkTableInstance.getDefault().addSchema();
+        PubSubOption.sendAll(true);
+        return publishers.computeIfAbsent(key, () ->
+                    table.getTopic(key)
+                            .genericPublishEx())
+    }
 
     @Override
     public void process(NumberYLogEntry entry) {
-        NetworkTableInstance inst = NetworkTableInstance.getDefault().addSchema();
 
-        NetworkTableInstance.getDefault()
-                .g
     }
+
 
     @Override
     public void process(NumberArrayYLogEntry entry) {
